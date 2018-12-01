@@ -3,109 +3,119 @@
 <html lang="en">
 <head>
 <style>
-* {
-  box-sizing: border-box; 
+@import "compass/css3";
+
+// Base Styles
+body, html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+  text-align: center;
+  height: 100%;
+  overflow: hidden;
 }
 
-body {
-  margin: 0; 
-  font-weight: 500;
-  font-family: 'HelveticaNeue';
+// Nav
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: #212121;
+  
+  ul li {
+    display: inline-block;
+    
+    a {
+      color: rgba(255,255,255,0.45);
+      font-size: 0.875rem;
+      display: block;
+      text-decoration: none;
+      padding: 6px 15px;
+      
+      &:hover {
+        color: #fff;
+      }
+    } 
+  } 
 }
 
+// Sections
 section {
+  height: 100%;
   width: 100%;
-  padding: 0 7%;
   display: table;
-  margin: 0;
-  max-width: none;
-  background-color: #373B44;
-  height: 100vh;
-  
-  &:nth-of-type(2n) {
-    background-color: #FE4B74;
+  pointer-events: none;
+  z-index: 0; 
+  -webkit-transition: transform 0.45s cubic-bezier(0, 0, 0.21, 1);
+  transition: transform 0.45s cubic-bezier(0, 0, 0.21, 1);
+
+  h1 {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color: #fff;
+    font-weight: lighter;
   }
 }
 
-.intro {
-  height: 90vh;
+#one {
+  background: #2196F3;
 }
 
-.content {
-  display: table-cell;
-  vertical-align: middle;
+#two {
+  background: #00BCD4;
 }
 
-h1 {
-  font-size: 3em;
-  display: block;
-  color: white;
-  font-weight: 300;
+#three {
+  background: #673AB7;
 }
 
-p {
-  font-size: 1.5em;
-  font-weight: 500;
-  color: #C3CAD9;
+
+// Smooth Scroll
+a[id= "one"]:target ~ #one {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
-a {
-  font-weight: 700;
-  color: #373B44;
-  position: relative;
-  
-  &:hover{ 
-    opacity: 0.8;
-  }
-  
-  &:active {
-    top: 1px;
-  }
+a[id= "two"]:target ~ #two {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
 }
 
-footer {
-  padding: 1% 5%;
-  text-align:center;
-  background-color: #373B44;
-  color: white;
-  
-  a {
-    color: #FE4B74;
-    font-weight: 500;
-    text-decoration: none;
-  }
+a[id= "three"]:target ~ #three {
+    -webkit-transform: translate3d(0, -200%, 0);
+    transform: translate3d(0, -200%, 0);
 }
 </style>
 </head>
 <body>
-<section class="intro">  
-  <div class="content">
-    <h1>You can create full screen sections without javascript.</h1>
-    <p>The height is set to 90vh, that means 90% height.</p>
- </div>
+<a id="one">Section 1</a>
+<a id="two">Section 2</a>
+<a id="three">Section 3</a>
+
+<nav>
+  <div class="container">
+    <ul>
+      <li><a href="#one">Section 1</a></li>
+      <li><a href="#two">Section 2</a></li>
+      <li><a href="#three">Section 3</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="one">
+  <h1>Section 1</h1>
 </section>
 
-<section>  
-  <div class="content">
-    <h1>Resize your browser and see how they adapt.</h1>
- </div>
+<section id="two">
+  <h1>Section 2</h1>
 </section>
 
-<section>  
-  <div class="content">
-    <h1>It's amazing and fast.</h1>
- </div>
+<section id="three">
+  <h1>Section 3</h1>
 </section>
-
-<section>  
-  <div class="content">
-    <h1>See the <a href="http://caniuse.com/#feat=viewport-units">browser support.</a></h1>
- </div>
-</section>
-
-<footer>
-  Made by <a href="https://www.twitter.com/ckor">@ckor</a>
-</footer>
 
 </body>
 </html>
