@@ -4,30 +4,28 @@
 <script>
 function change_show(show_div) {
 
-var episode_number, myObj, txt = "";
+var episode_number, xmlhttp, myObj, txt = "";
 
-episode_number += this.episode_number.value;
-
-var xmlhttp = new XMLHttpRequest();
+xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     var myObj = JSON.parse(this.responseText);
 	
 	// Create accordion
 	  for (episode_number in myObj) {
-	  txt += "Season:" + myObj.episodes[episode_number].season + "<br />Episode:" + myObj.episodes[episode_number].episode
+	  txt += "Season:" + myObj._embedded.episodes.[episode_number].season + "<br />Episode:" + myObj._embedded.episodes.[episode_number].episode
 	  }
     document.getElementById("show_div").innerHTML = txt;
   }
 };
 xmlhttp.open("GET", "got_shows.json", true);
-xmlhttp.send();
+xmlhttp.send("episode_number=" + this.episode_number.value);
 
 }
 </script>
 
 <input type="text" id="episode_number" />
-<button onclick="change_show()">Show Season</button>
+<button onclick="change_show()">Show Episode</button>
 
 <div id="show_div"></div>
 
