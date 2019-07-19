@@ -17,7 +17,7 @@ xmlhttp.onreadystatechange = function() {
 	  for (episode_number in myObj) {
 	  txt += "Season:" + myObj.episodes[episode_number].season + "<br />Episode:" + myObj.episodes[episode_number].episode
 	  }
-    document.getElementById("show_div").innerHTML = myObj.name;
+    document.getElementById("show_div").innerHTML = txt;
   }
 };
 xmlhttp.open("GET", "got_shows.json", true);
