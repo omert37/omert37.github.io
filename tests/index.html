@@ -2,35 +2,30 @@
 <html>
 <body>
 <script>
-function loadJSON(callback) {   
+function change_show(show_div) {
 
-    var xobj = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
-    xobj.open('GET', 'got_shows.json', true); // Replace 'my_data' with the path to your file
-    xobj.onreadystatechange = function () {
-          if (xobj.readyState == 4 && xobj.status == "200") {
-            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-            callback(xobj.responseText);
-          }
-    };
-    xobj.send(null);  
- }
- 
- function init() {
- loadJSON(function(response) {
-  // Parse JSON string into object
-    var json_obj = JSON.parse(response);
-	var
- });
+var season_number, episode_number;
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var myObj = JSON.parse(this.responseText);
+	
+	// Create accordion
+	  for (season_number in myObj) {
+	  txt += "Season:" + myObj[season_number].season + "<br />Episode:" + myObj[season_number].epdisode
+	  }
+    document.getElementById("show_div").innerHTML = myObj.name;
+  }
+};
+xmlhttp.open("GET", "got_shows.json", true);
+xmlhttp.send();
+
 }
 </script>
 
-<p id="demo"></p>
+<div id="show_div"></div>
 
-<script>
-document.getElementById("demo").innerHTML =
-json_obj._embedded[1].episodes.season + " " + json_obj._embedded[1].episodes.number;
-</script>
 
 </body>
 </html>
