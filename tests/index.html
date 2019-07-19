@@ -6,6 +6,8 @@ function change_show(show_div) {
 
 var season_number, episode_number;
 
+season_number += this.season_number.value;
+
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
@@ -23,6 +25,9 @@ xmlhttp.send();
 
 }
 </script>
+
+<input type="text" id="season_number" />
+<button onclick="change_show()">Show Season</button>
 
 <div id="show_div"></div>
 
