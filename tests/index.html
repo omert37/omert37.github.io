@@ -19,9 +19,18 @@ function loadJSON(callback) {
  function init() {
  loadJSON(function(response) {
   // Parse JSON string into object
-    var actual_JSON = JSON.parse(response);
+    var json_obj = JSON.parse(response);
+	var
  });
 }
 </script>
+
+<p id="demo"></p>
+
+<script>
+document.getElementById("demo").innerHTML =
+json_obj._embedded[1].episodes.season + " " + json_obj._embedded[1].episodes.number;
+</script>
+
 </body>
 </html>
