@@ -1,33 +1,144 @@
 <!DOCTYPE html>
 <html>
-<body>
+<head>
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+/* Layout (column) styles */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+	padding:15px;
+}
+
+.right {
+
+}
+</style>
+
 <script>
-function change_show(show_div) {
+function openTab(evt, tabName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
 
-var episode_number, xmlhttp, myObj, txt = "";
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
 
-xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-    var myObj = JSON.parse(this.responseText);
-	
-	// Create accordion
-	  for (episode_number in myObj) {
-	  txt += "Season:" + myObj._embedded.episodes.[episode_number].season + "<br />Episode:" + myObj._embedded.episodes.[episode_number].episode
-	  }
-    document.getElementById("show_div").innerHTML = txt;
-  }
-};
-xmlhttp.open("GET", "got_shows.json", true);
-xmlhttp.send("episode_number=" + this.episode_number.value);
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
 
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
 }
 </script>
 
-<input type="text" id="episode_number" />
-<button onclick="change_show()">Show Episode</button>
+</head>
+<body>
 
-<div id="show_div"></div>
+
+<div class="tab" style="padding-left:15px; background-color:purple;">
+<h1 style="color:#FFFFFF;">Omer's Game of Thrones Episode Guide</h1>
+</div>
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'GOTEpisodes')" id="defaultOpen">Episode Search</button>
+  <button class="tablinks" onclick="openTab(event, 'GOTSeasons')">Seasons</button>
+</div>
+
+<div id="GOTEpisodes" class="tabcontent">
+<h2>Game of Thrones Episodes</h2>
+
+<input type="text" id="gotepisodes" placeholder="Enter episode number..." style="width:500px;">
+<input id="GetInformationButton" type="button" class="w3-button w3-blue" value="Get Information" onclick="change_episode(this.value)">
+
+<p id="episodedata" style="display:none;" class="animate-bottom"></p>
+<script>
+//Click button after hitting 'Enter' key (Real-Time)
+var input = document.getElementById("gotepisodes");
+input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("GetInformationButton").click();
+    }
+});
+
+var obj, dbParam, xmlhttp, myObj, x, txt = "";
+
+function change_episode(realtime) {
+obj = { "table":realtime, "limit":20 };
+  dbParam = JSON.stringify(obj);
+  xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      myObj = JSON.parse(this.responseText);
+	  
+	  // Create accordion
+	  for (x in myObj) {
+	  txt +="<b>"+ myObj[x]._embedded.episodes + "</b>" + myObj[x]._embedded.episodes.[this.gotepisodes.value].summary 
+	  document.getElementById("episodedata").innerHTML = txt;
+	  
+	  xmlhttp.open("GET", "got_shows.json" + this.gotepisodes.value, true);
+  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xmlhttp.send("x=" + dbParam);
+}
+</script>
+</div>
+
+<div id="GOTSeasons" class="tabcontent">
+<h2>Game of Thrones Seasons</h2>
+</div>
 
 
 </body>
