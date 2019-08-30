@@ -126,10 +126,10 @@ obj = { "table":realtime, "limit":20 };
 	  
 	  // Create accordion
 	  for (x in myObj) {
-	  txt +="<b>"+ myObj[x]._embedded.episodes + "</b>" + myObj[x]._embedded.episodes.[this.gotepisodes.value].summary 
+	  txt +="<b>"+ myObj[x]._embedded.episodes + "</b>" + myObj[x]._embedded.episodes.summary 
 	  document.getElementById("episodedata").innerHTML = txt;
 	  
-	  xmlhttp.open("GET", "got_shows.json" + this.gotepisodes.value, true);
+	  xmlhttp.open("GET", "got_shows.json" , true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xmlhttp.send("x=" + dbParam);
 }
