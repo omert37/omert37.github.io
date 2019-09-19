@@ -22,7 +22,7 @@
 <div id="mapid" style="width: 600px; height: 400px;"></div>
 <script>
 
-	var mymap = L.map('mapid').setView([32.069, 34.77], 13);
+	var mymap = L.map('mapid').setView([32.069646, 34.773837], 13);
 
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		maxZoom: 18,
@@ -32,10 +32,10 @@
 		id: 'mapbox.streets'
 	}).addTo(mymap);
 
-	var marker = L.marker([32.069, 34.77]).addTo(mymap);
+	var marker = L.marker([32.069646, 34.773837]).addTo(mymap);
 	marker.bindPopup("<b>Amit is here!</b><br>Hello people!").openPopup();
 	
-	var circle = L.circle([32.069, 34.77], {
+	var circle = L.circle([32.069646, 34.773837], {
 	color: 'red',
 	fillColor: '#f03',
 	fillOpacity: 0.5,
@@ -43,9 +43,9 @@
 }).addTo(mymap);
 
 var polygon = L.polygon([
-	[32.069, 34.770],
-	[32.063, 34.765],
-	[32.061, 34.761]
+	[32.069646, 34.773837],
+	[32.063646, 34.763837],
+	[32.061646, 34.613837]
 ]).addTo(mymap);
 </script>
 
