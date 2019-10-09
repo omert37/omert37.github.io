@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/w3.css">
+<link rel="icon" type="image/png" href="KWOTfavicon.png">
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+/* Table styles */
+table th {background-color:#81B6FE; color:#FFFFFF;}
+table {border-collapse: collapse;}
+table, th, td {
+    border: 1px solid black;
+	font-size: 1em;
+	padding: 0.5em;
+}
+
+/* Layout (column) styles */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+	padding:15px;
+}
+
+.right {
+
+}
+
+/* Form styles */
+input[type=text] {
+    border: 2px solid #81B6FE;
+    border-radius: 4px;
+	padding:14px 20px;
+	font-size:18px;
+	font-weight:bold;
+}
+
+input[type=button] {
+    background-color:#81B6FE;
+    border-radius: 4px;
+	padding:14px 20px;
+	font-size:18px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+
+input[type=date] {
+    border: 2px solid #81B6FE;
+    border-radius: 4px;
+	padding:14px 20px;
+	font-size:18px;
+	font-weight:bold;
+}
+
+.ExcelButton input[type=button]  {
+    background-color:#37bc76;
+    border-radius: 4px;
+	padding:14px 20px;
+	font-size:18px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 500px;
+    background-color: #00aadd;
+    color: #fff;
+    text-align: left;
+    padding: 10px 10px;
+    border-radius: 6px;
+	border: 1px solid #FFFFFF;
+	top: -5px;
+    left: 105%;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* SELECT element styles START */
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+.select-selected {
+  background-color: DodgerBlue;
+}
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+/* SELECT element styles END */
+
+/* Chart CSS Start */
+body {
+  font-family: Verdana;
+  font-size: 12px;
+  padding: 10px;
+}
+
+#chartdiv {
+  width: 100%;
+  height: 500px;
+  font-size: 11px;
+}
+
+#data,
+#data th,
+#data td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#data th {
+  font-weight: bold;
+  background-color: #eee;
+}
+
+/* Chart CSS End */
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.accordion:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+.accordion .active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+/* Loader Animation - Start */
+/* Center the loader */
+  
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  margin: -75px 0 0 -75px;
+  width: 325px;
+  text-align: center;
+  }
+
+#loader > div {
+  width: 75px;
+  height: 75px;
+  background-color: #0D8ECF;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+#loader .bounce1 {
+	background-color: #FCD202;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+#loader .bounce2 {
+   background-color: #B0DE09;
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+  
+  /* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#realtimedata {
+  display: none;
+}
+
+#quotehistory {
+  display: none;
+}
+
+</style>
+
+
+<script>
+function openTab(evt, tabName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+
+<!-- Export table to Excel -->
+<script type="text/javascript">
+function ExportToExcelRealTime(realtimetable){
+       var htmltable= document.getElementById('realtimetable');
+       var html = htmltable.outerHTML;
+       window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
+    }
+</script>
+
+<script type="text/javascript">
+function ExportToExcelForex(forextable){
+       var htmltable= document.getElementById('forextable');
+       var html = htmltable.outerHTML;
+       window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
+    }
+</script>
+
+<script type="text/javascript">
+function ExportToExcelHistory(historicaltable){
+       var htmltable= document.getElementById('historicaltable');
+       var html = htmltable.outerHTML;
+       window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
+    }
+</script>
+
+
+</head>
+<body>
+<div id="loader" style="display:none;">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+</div>
+
+<div class="tab" style="padding-left:15px; background-color:purple;">
+<h1 style="color:#FFFFFF;">The <b>KWOT</b> Project | <span style="font-size:0.7em">A <b>K</b>arin <b>W</b>essely & <b>O</b>mer <b>T</b>oledano Production</span></h1>
+</div>
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'RealTimeData')" id="defaultOpen">Real-Time Data</button>
+  <button class="tablinks" onclick="openTab(event, 'FOREXData')">FOREX Data</button>
+  <button class="tablinks" onclick="openTab(event, 'HistoricalData')">Historical Data</button>
+</div>
+
+<div id="RealTimeData" class="tabcontent">
+<h2>Real-Time Quote Data</h2>
+
+
+<input type="text" id="mysymbols" placeholder="Enter ticker symbols (seperated by commas)..." style="width:500px;">
+<input id="GetInformationButton" type="button" class="w3-button w3-blue" value="Get Information" onclick="change_mysymbols(this.value)">
+
+<script>
+//Click button after hitting 'Enter' key (Real-Time)
+var input = document.getElementById("mysymbols");
+input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("GetInformationButton").click();
+    }
+});
+
+
+// Loader Animation
+ // Real Time Loader Animation
+  var myVar1;
+
+function ShowRealTimeLoader() {
+	document.getElementById("loader").style.display = "block";
+    myVar1 = setTimeout(showRealTime, 2000);
+}
+
+function showRealTime() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("realtimedata").style.display = "block";
+}
+
+// History Loader Animation
+  var myVar2;
+
+function ShowHistoryLoader() {
+	document.getElementById("loader").style.display = "block";
+    myVar2 = setTimeout(showQuoteHistory, 2000);
+}
+
+function showQuoteHistory() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("quotehistory").style.display = "block";
+}
+
+// Forex Loader Animation
+  var myVar3;
+
+function ShowForexLoader() {
+	document.getElementById("loader").style.display = "block";
+    myVar3 = setTimeout(showForex, 2000);
+}
+
+function showForex() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("forexdata").style.display = "block";
+}
+
+</script>
+<input class="w3-button w3-green" type="button" value="Export to Excel" onclick="ExportToExcelRealTime(realtimetable)">
+<p id="realtimedata" style="display:none;" class="animate-bottom"></p>
+
+<script>
+function change_mysymbols(realtime) {
+
+ShowRealTimeLoader();
+
+  var obj, dbParam, xmlhttp, myObj, x, txt = "";
+  
+  obj = { "table":realtime, "limit":20 };
+  dbParam = JSON.stringify(obj);
+  xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      myObj = JSON.parse(this.responseText);
+	  
+	  // Create accordion
+	  for (x in myObj) {
+	  txt += "<button class='accordion'><b>"+ myObj[x].symbol +" | " + myObj[x].description + " | </b><b>Last Price: </b>" + myObj[x].lastPrice + " <b>Close Price: </b>" + myObj[x].closePrice + "</button>"
+	  txt += "<div class='panel'><div class='row'><div class='column'><p><b>Asset Type: </b>" + myObj[x].assetType + "<br /><b>Bid Price: </b>"+ myObj[x].bidPrice + "<br /><b>Bid Size: </b>"+ myObj[x].bidSize + " <b>Bid ID: </b>"+ myObj[x].bidId + "<br /><b>Ask Price: </b>"+ myObj[x].askPrice + "<br /><b>Ask Size: </b>"+ myObj[x].askSize + "<br /><b>Ask ID: </b>"+ myObj[x].askId + "<br /><b>Last Size: </b>"+ myObj[x].lastSize + "<br /><b>Last ID: </b>"+ myObj[x].lastId + "<br /><b>High Price: </b>"+ myObj[x].highPrice + "<br /><b>Low Price: </b>"+ myObj[x].lowPrice + "<br /><b>Bid Tick: </b>"+ myObj[x].bidTick + "<br /><b>Net Change: </b>"+ myObj[x].netChange + "<br /><b>Total Volume: </b>"+ myObj[x].totalVolume + "<br /><b>Quote Time (Long): </b>"+ myObj[x].quoteTimeInLong + "<br /><b>Trade Time (Long): </b>"+ myObj[x].tradeTimeInLong + " </div><div class='column'><b>Mark: </b>"+ myObj[x].mark + "<br /><b>Exchange Name: </b>"+ myObj[x].exchangeName + "<br /><b>Marginable: </b>"+ myObj[x].marginable + "<br /><b>Shortable: </b>"+ myObj[x].shortable + "<br /><b>Volatility: </b>"+ myObj[x].volatility + "<br /><b>Digits: </b>"+ myObj[x].digits + "<br /><b>nAV: </b>"+ myObj[x].nAV + "<br /><b>peRatio: </b>"+ myObj[x].peRatio + "<br /><b>divAmount: </b>"+ myObj[x].divAmount + " <b>divYield: </b>"+ myObj[x].divYield + "<br /><b>divDate: </b>"+ myObj[x].divDate + "<br /><b>Security Status: </b>"+ myObj[x].securityStatus + "<br /><b>Regular Market Last Price: </b>"+ myObj[x].regularMarketLastPrice + "<br /><b>Regular Market LastSize: </b>"+ myObj[x].regularMarketLastSize + "<br /><b>Regular Market Net Change: </b>"+ myObj[x].regularMarketNetChange + "<br /><b>Regular Market Trade Time In Long: </b>"+ myObj[x].regularMarketTradeTimeInLong + "<br /><b>Delayed: </b>"+ myObj[x].delayed + "</p></div></div></div>"
+	  }
+	  
+	  // Create invisible table (opacity 0)
+      txt += "<table id='realtimetable' style='opacity: 0;'>"
+	  txt += "<tr><th>assetType</th><th>symbol</th><th>description </th><th>bidPrice</th><th>bidSize</th><th>bidId</th><th>askPrice</th><th>askSize</th><th>askId</th><th>lastPrice</th><th>lastSize</th><th>lastId</th><th>openPrice</th><th>highPrice</th><th>lowPrice</th><th>bidTick</th><th>closePrice</th><th>netChange</th><th>totalVolume</th><th>quoteTimeInLong</th><th>tradeTimeInLong</th><th>mark</th><th>exchangeName</th><th>marginable</th><th>shortable</th><th>volatility</th><th>digits</th><th>nAV</th><th>peRatio</th><th>divAmount</th><th>divYield</th><th>divDate</th><th>securityStatus</th><th>regularMarketLastPrice</th><th>regularMarketLastSize</th><th>regularMarketNetChange</th><th>regularMarketTradeTimeInLong</th><th>delayed</th></tr>"
+      for (x in myObj) {
+        txt += "<tr><td>" + myObj[x].assetType + "</td><td>" + myObj[x].symbol + "</td><td>" + myObj[x].description + "</td><td>" + myObj[x].bidPrice + "</td><td>" + myObj[x].bidSize + "</td><td>" + myObj[x].bidId + "</td><td>" + myObj[x].askPrice + "</td><td>" + myObj[x].askSize + "</td><td>" + myObj[x].askId + "</td><td>" + myObj[x].lastPrice + "</td><td>" + myObj[x].lastSize + "</td><td>" + myObj[x].lastId + "</td><td>" + myObj[x].openPrice + "</td><td>" + myObj[x].highPrice + "</td><td>" + myObj[x].lowPrice + "</td><td>" + myObj[x].bidTick + "</td><td>" + myObj[x].closePrice + "</td><td>" + myObj[x].netChange + "</td><td>" + myObj[x].totalVolume + "</td><td>" + myObj[x].quoteTimeInLong + "</td><td>" + myObj[x].tradeTimeInLong + "</td><td>" + myObj[x].mark + "</td><td>" + myObj[x].exchangeName + "</td><td>" + myObj[x].marginable + "</td><td>" + myObj[x].shortable + "</td><td>" + myObj[x].volatility + "</td><td>" + myObj[x].digits + "</td><td>" + myObj[x].nAV + "</td><td>" + myObj[x].peRatio + "</td><td>" + myObj[x].divAmount + "</td><td>" + myObj[x].divYield + "</td><td>" + myObj[x].divDate + "</td><td>" + myObj[x].securityStatus + "</td><td>" + myObj[x].regularMarketLastPrice + "</td><td>" + myObj[x].regularMarketLastSize + "</td><td>" + myObj[x].regularMarketNetChange + "</td><td>" + myObj[x].regularMarketTradeTimeInLong + "</td><td>" + myObj[x].delayed + "</td></tr>";
+      }
+      txt += "</table>"        
+      document.getElementById("realtimedata").innerHTML = txt;
+	  
+	  //Accordion JS
+	  var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+	  //Accordion JS End
+    }
+  };
+  xmlhttp.open("GET", "https://api.tdameritrade.com/v1/marketdata/quotes?apikey=kwoting@AMER.OAUTHAP&symbol=" + this.mysymbols.value, true);
+  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xmlhttp.send("x=" + dbParam);
+}
+</script>
+</div>
+
+<div id="FOREXData" class="tabcontent">
+<h2>Real-Time FOREX Quote Data</h2>
+
+
+<input type="text" id="myforexpairs" placeholder="Enter FOREX Pairs (seperated by commas)..." style="width:500px;">
+<input id="GetForexInformationButton" type="button" class="w3-button w3-blue" value="Get Information" onclick="change_myforexpairs(this.value)">
+<input class="w3-button w3-green" type="button" value="Export to Excel" onclick="ExportToExcelForex(forextable)">
+<p>* FOREX pairs should be entered together (e.g. USDEUR,GBPJPY,AUDUSD)</p>
+<p id="forexdata" style="display:none;" class="animate-bottom"></p>
+<script>
+//Click button after hitting 'Enter' key (FOREX)
+var input2 = document.getElementById("myforexpairs");
+input2.addEventListener("keyup", function(event2) {
+    event2.preventDefault();
+    if (event2.keyCode === 13) {
+        document.getElementById("GetForexInformationButton").click();
+    }
+});
+</script>
+
+
+<script>
+function change_myforexpairs(forex) {
+
+ShowForexLoader();
+
+  var newdt3, obj3, dbParam3, xmlhttp3, myObj3, z, txt3 = "";
+  
+  obj3 = { "table":forex, "limit":20 };
+  dbParam3 = JSON.stringify(obj3);
+  xmlhttp3 = new XMLHttpRequest();
+  xmlhttp3.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      myObj3 = JSON.parse(this.responseText);
+	  
+	  
+	  // Create FOREX Table
+      txt3 += "<table id='forextable'>"
+	  txt3 += "<tr><th>Symbol</th><th>Price</th><th>Bid</th><th>Ask</th><th>Date/Time</th></tr>"
+      for (z in myObj3) {
+	  dt3 = myObj3[z].timestamp
+	  newdt3 = new Date(dt3 * 1000).toUTCString();
+        txt3 += "<tr><td>" + myObj3[z].symbol + "</td><td>" + myObj3[z].price + "</td><td>" + myObj3[z].bid + "</td><td>" + myObj3[z].ask + "</td><td>" + newdt3 + "</td></tr>";
+      }
+      txt3 += "</table>"        
+      document.getElementById("forexdata").innerHTML = txt3;
+	  
+	  //Accordion JS
+	  var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+	  //Accordion JS End
+    }
+  };
+  xmlhttp3.open("GET", "https://forex.1forge.com/1.0.3/quotes?api_key=LXoaTNlkjmYzQdLmWlJFHnUhpFQUE738&pairs=" + this.myforexpairs.value, true);
+  xmlhttp3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xmlhttp3.send("z=" + dbParam3);
+}
+</script>
+
+</div>
+
+<div id="HistoricalData" class="tabcontent">
+
+<div class="row" id="ChartWrapper" style="display:none;">
+<div class="column">
+<h2>Chart: Open, High, Low & Close Rates for ( <span id="StockSymbolinTitle"></span> )</h2>
+<!-- Chart DIV -->
+<div id="chartdiv"></div>
+</div>
+</div>
+
+<div class="row">
+<div class="column">
+<h2>Historical Stock Data Information</h2>
+<div class="row">
+<div class="column"><input type="text" id="mysinglesymbol" placeholder="Enter Symbol..."></div><div class="column"><input type="button" class="w3-button w3-blue" value="Get History Information" onclick="change_history(this.value)"></div><br /><br />
+</div>
+<div class="row">
+<div class="column">
+Period Type: <!-- Tool tip Start --><div class="tooltip"><img src="question_mark.png" height="15">
+  <span class="tooltiptext">The type of period to show. Valid values are day, month, year, or ytd (year to date). Default is day.</span>
+</div><!-- Tool tip End --><br />
+<div class="custom-select" style="width:200px;">
+<select id="periodType">
+<option value="">Select...</option>
+<option value="day">Day</option>
+<option value="month">Month</option>
+<option value="year">Year</option>
+<option value="ytd">Year To Date</option>
+</select>
+</div>
+</div>
+<div class="column">
+
+Period: <!-- Tool tip Start --><div class="tooltip"><img src="question_mark.png" height="15">
+  <span class="tooltiptext">The number of periods to show.<br /><br />
+
+Example: For a 2 day / 1 min chart, the values would be:<br /><br />
+
+period: 2<br />
+periodType: day<br />
+frequency: 1<br />
+frequencyType: min<br /><br />
+
+Valid periods by periodType (defaults marked with an asterisk):<br /><br />
+
+day: 1, 2, 3, 4, 5, 10*<br />
+month: 1*, 2, 3, 6<br />
+year: 1*, 2, 3, 5, 10, 15, 20<br />
+ytd: 1* Example: For a 2 day / 1 min chart, the values would be: period: 2 periodType:
+
+day frequency: 1 frequencyType: min <br />
+
+Valid periods by periodType (defaults marked with an asterisk):<br />
+ day: 1, 2, 3, 4, 5, 10*<br />
+month: 1*, 2, 3, 6<br />
+year: 1*, 2, 3, 5, 10, 15, 20<br />
+ytd: 1*</span>
+</div><!-- Tool tip End --><br />
+<div class="custom-select" style="width:200px;">
+<select id="Period">
+<option value="">Select...</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+</select>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="column">
+Frequency Type: <!-- Tool tip Start --><div class="tooltip"><img src="question_mark.png" height="15">
+  <span class="tooltiptext">The type of frequency with which a new candle is formed. Valid frequencyTypes by periodType (defaults marked with an asterisk):<br /><br />
+
+day: minute*<br />
+month: daily, weekly*<br />
+year: daily, weekly, monthly*<br />
+ytd: daily, weekly*</span>
+</div><!-- Tool tip End --><br />
+<div class="custom-select" style="width:200px;">
+<select id="frequencyType">
+<option value="">Select...</option>
+<option value="minute">Minute</option>
+<option value="daily">Daily</option>
+<option value="weekly">Weekly</option>
+<option value="monthly">Monthly</option>
+</select>
+</div>
+</div>
+<div class="column">
+Frequency: <!-- Tool tip Start --><div class="tooltip"><img src="question_mark.png" height="15">
+  <span class="tooltiptext">The number of the frequencyType to be included in each candle. Valid frequencies by frequencyType (defaults marked with an asterisk):<br /><br />
+
+minute: 1*, 5, 10, 15, 30<br />
+daily: 1*<br />
+weekly: 1*<br />
+monthly: 1*</span>
+</div><!-- Tool tip End --><br />
+<div class="custom-select" style="width:200px;">
+<select id="Frequency">
+<option value="">Select...</option>
+<option value="1">1</option>
+<option value="5">5</option>
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="30">30</option>
+</select>
+</div>
+</div>
+</div>
+
+
+<div class="row">
+<div class="column">
+Start Date: <!-- Tool tip Start --><div class="tooltip"><img src="question_mark.png" height="15">
+  <span class="tooltiptext">Start date as milliseconds since epoch. If startDate and endDate are provided, period should not be provided.</span>
+</div><!-- Tool tip End --><br />
+<input type="date" id="StartDate"></div>
+
+<div class="column">
+End Date: <!-- Tool tip Start --><div class="tooltip"><img src="question_mark.png" height="15">
+  <span class="tooltiptext">End date as milliseconds since epoch. If startDate and endDate are provided, period should not be provided.</span>
+</div><!-- Tool tip End --><br />
+<input type="date" id="EndDate">
+</div>
+</div>
+
+<div class="row">
+<div class="column">
+Need Extended Hours Data: <!-- Tool tip Start --><div class="tooltip"><img src="question_mark.png" height="15">
+  <span class="tooltiptext"><b>true</b> to return extended hours data, <b>false</b> for regular market hours only. Default is <b>true</b></span>
+</div><!-- Tool tip End --><br />
+<div class="custom-select" style="width:200px;">
+<select id="needExtendedHoursData">
+<option value="">Select...</option>
+<option value="true">True</option>
+<option value="false">False</option>
+</select>
+</div>
+</div>
+</div>
+
+
+</div>
+<div class="column" style="background-color:#EEF8FE;">
+<input class="w3-button w3-green" type="button" value="Export to Excel" onclick="ExportToExcelHistory(historicaltable)">
+<input id="ShowChartButton" type="button" class="w3-button w3-purple" value="Show Chart" onclick="showChart()">
+
+<script type="text/javascript">
+function showChart() {
+    var x = document.getElementById("ChartWrapper");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+		this.ShowChartButton.value = "Hide Chart";
+    } else {
+        x.style.display = "none";
+		this.ShowChartButton.value = "Show Chart";
+    }
+}
+</script>
+
+<p id="quotehistory" style="display:none;" class="animate-bottom"></p>
+
+<script type="text/javascript" src="js/amcharts.js"></script>
+<script type="text/javascript" src="js/serial.js"></script>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
+
+<!-- Get JSON DATA -->
+<script type="text/javascript">
+
+
+
+//Get JSON Data
+
+function change_history(history_table) {
+
+document.getElementById("StockSymbolinTitle").innerHTML = this.mysinglesymbol.value;
+
+ShowHistoryLoader();
+
+  var newdt, obj2, dbParam2, xmlhttp2, myObj2, y, txt2 = "";
+  
+
+//Convert Start and End Dates to Milliseconds - Start
+
+
+//Start Date conversion
+var StartDateValue = this.StartDate.value;
+
+if (isNaN(StartDateValue)){
+	
+var NewStartDateValue = new Date(StartDateValue).getTime();
+}
+
+else {
+var NewStartDateValue = "";
+}
+
+//End Date conversion
+var EndDateValue = this.EndDate.value;
+
+if (isNaN(EndDateValue)){
+var NewEndDateValue = new Date(EndDateValue).getTime();
+}
+
+else {
+var NewEndDateValue = "";
+}
+//Convert Start and End Dates to Milliseconds - End
+
+
+//Build Table JSON Data
+
+  obj2 = { "table":history_table, "limit":20 };
+  dbParam2 = JSON.stringify(obj2);
+  xmlhttp2 = new XMLHttpRequest();
+  xmlhttp2.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      myObj2 = JSON.parse(this.responseText);
+	  
+      txt2 += "<table id='historicaltable'>"
+	  txt2 += "<thead>"
+	  txt2 += "<tr><th colspan='5'>Price History for: ( " + myObj2.symbol + " )</th></tr>"
+	  txt2 += "<tr><th>datetime</th><th>open</th><th>high</th><th>low</th><th>close</th></tr>"
+	  txt2 += "</thead>"
+	  txt2 += "<tbody>"
+      for (y in myObj2.candles) {
+	  dt = myObj2.candles[y].datetime
+	  newdt = new Date(dt).toUTCString();
+        txt2 += "<tr><th>" + newdt + "</th><td>" + myObj2.candles[y].open + "</td><td>" + myObj2.candles[y].high + "</td><td>" + myObj2.candles[y].low + "</td><td>" + myObj2.candles[y].close + "</td></tr>";
+      }
+      txt2 += "</tbody>" 
+	  txt2 += "</table>"
+	  
+	  txt2 += "<br /><br />"
+	  txt2 += "<table id='volumetable'>"
+	  txt2 += "<thead>"
+	  txt2 += "<tr><th colspan='2'>Volumes</th></tr>"
+	  txt2 += "<tr><th>datetime</th><th>volume</th></tr>"
+	  txt2 += "</thead>"
+	  txt2 += "<tbody>"
+	  for (y in myObj2.candles) {
+	  dt = myObj2.candles[y].datetime
+	  newdt = new Date(dt).toUTCString();
+        txt2 += "<tr><th>" + newdt + "</th><td>" + myObj2.candles[y].volume + "</td></tr>";
+      }
+	  txt2 += "</tbody>"
+	  txt2 += "</table>"
+      document.getElementById("quotehistory").innerHTML = txt2;
+	  
+	  // amchart
+	  
+	  var chartConfig = {
+  "type": "serial",
+  "dataProvider": [],
+  "valueAxes": [{
+    "gridColor": "#FFFFFF",
+    "gridAlpha": 0.2,
+    "dashLength": 0
+  }],
+  "legend": {
+    "position": "top",
+	"align": "right",
+	"data": [{title: "Open", color:"#FF6600"},{title: "High", color:"#FCD202"},{title: "Low", color:"#B0DE09"},{title: "Close", color:"#0D8ECF"}]
+	},
+  "gridAboveGraphs": true,
+  "startDuration": 1,
+  "graphs": [],
+  "chartCursor": {
+    "categoryBalloonEnabled": false,
+    "cursorAlpha": 0,
+    "zoomable": false
+  },
+  "categoryField": "category",
+  "categoryAxis": {
+    "gridPosition": "start",
+    "gridAlpha": 0,
+	"labelRotation": 45
+  }
+};
+
+jQuery(document).ready(function() {
+  // get categories
+  jQuery('#historicaltable thead th').each(function(index) {
+    if (index) { // skip the first column
+      chartConfig.graphs.push({
+        "balloonText": "[[category]]: <b>[[value]]</b>",
+        "fillAlphas": 0.8,
+        "lineAlpha": 0.2,
+        "type": "column",
+        "valueField": "value" + index
+      });
+    }
+  });
+
+  // get data points
+  jQuery('#historicaltable tbody tr').each(function(index) {
+    var dataPoint = {};
+    jQuery(this).find('th,td').each(function(index2) {
+      if (jQuery(this).is('th')) { // category
+        dataPoint.category = this.innerHTML;
+      } else {
+        dataPoint['value' + index2] = Number(this.innerHTML);
+      }
+    });
+    chartConfig.dataProvider.push(dataPoint);
+  });
+
+  // make the chart
+  var chart = AmCharts.makeChart("chartdiv", chartConfig);
+  
+});
+	  
+    }
+  };
+  xmlhttp2.open("GET", "https://api.tdameritrade.com/v1/marketdata/" + this.mysinglesymbol.value + "/pricehistory?apikey=kwoting@AMER.OAUTHAP&periodType=" + this.periodType.value + "&period=" + this.Period.value + "&frequencyType=" + this.frequencyType.value + "&frequency=" + this.Frequency.value + "&startDate=" + NewStartDateValue + "&endDate=" + NewEndDateValue + "&needExtendedHoursData=" + this.needExtendedHoursData.value,true);
+  
+    
+  xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xmlhttp2.send("y=" + dbParam2);
+  
+}
+</script>
+</div>
+</div>
+
+<!-- Default TAB -->
+<script>
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+<!-- AM Chart Table Example
+
+<table id="data">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Revenue</th>
+      <th>Expenses</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>North America</th>
+      <td>1000</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>South America</th>
+      <td>350</td>
+      <td>500</td>
+    </tr>
+    <tr>
+      <th>Europe</th>
+      <td>1200</td>
+      <td>450</td>
+    </tr>
+    <tr>
+      <th>Asia</th>
+      <td>800</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>Oceania</th>
+      <td>250</td>
+      <td>120</td>
+    </tr>
+  </tbody>
+</table> -->
+
+
+<!-- Select STYLE script -->
+<script>
+var x, i, j, selElmnt, a, b, c;
+/*look for any elements with the class "custom-select":*/
+x = document.getElementsByClassName("custom-select");
+for (i = 0; i < x.length; i++) {
+  selElmnt = x[i].getElementsByTagName("select")[0];
+  /*for each element, create a new DIV that will act as the selected item:*/
+  a = document.createElement("DIV");
+  a.setAttribute("class", "select-selected");
+  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+  x[i].appendChild(a);
+  /*for each element, create a new DIV that will contain the option list:*/
+  b = document.createElement("DIV");
+  b.setAttribute("class", "select-items select-hide");
+  for (j = 0; j < selElmnt.length; j++) {
+    /*for each option in the original select element,
+    create a new DIV that will act as an option item:*/
+    c = document.createElement("DIV");
+    c.innerHTML = selElmnt.options[j].innerHTML;
+    c.addEventListener("click", function(e) {
+        /*when an item is clicked, update the original select box,
+        and the selected item:*/
+        var y, i, k, s, h;
+        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+        h = this.parentNode.previousSibling;
+        for (i = 0; i < s.length; i++) {
+          if (s.options[i].innerHTML == this.innerHTML) {
+            s.selectedIndex = i;
+            h.innerHTML = this.innerHTML;
+            y = this.parentNode.getElementsByClassName("same-as-selected");
+            for (k = 0; k < y.length; k++) {
+              y[k].removeAttribute("class");
+            }
+            this.setAttribute("class", "same-as-selected");
+            break;
+          }
+        }
+        h.click();
+    });
+    b.appendChild(c);
+  }
+  x[i].appendChild(b);
+  a.addEventListener("click", function(e) {
+      /*when the select box is clicked, close any other select boxes,
+      and open/close the current select box:*/
+      e.stopPropagation();
+      closeAllSelect(this);
+      this.nextSibling.classList.toggle("select-hide");
+      this.classList.toggle("select-arrow-active");
+    });
+}
+function closeAllSelect(elmnt) {
+  /*a function that will close all select boxes in the document,
+  except the current select box:*/
+  var x, y, i, arrNo = [];
+  x = document.getElementsByClassName("select-items");
+  y = document.getElementsByClassName("select-selected");
+  for (i = 0; i < y.length; i++) {
+    if (elmnt == y[i]) {
+      arrNo.push(i)
+    } else {
+      y[i].classList.remove("select-arrow-active");
+    }
+  }
+  for (i = 0; i < x.length; i++) {
+    if (arrNo.indexOf(i)) {
+      x[i].classList.add("select-hide");
+    }
+  }
+}
+/*if the user clicks anywhere outside the select box,
+then close all select boxes:*/
+document.addEventListener("click", closeAllSelect);</script>
+</body>
+</html>
