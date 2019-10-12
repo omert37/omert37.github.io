@@ -415,8 +415,6 @@ function ExportToExcelHistory(donorstable){
 
 //Get JSON Data
 
-function change_history(history_table) {
-
 document.getElementById("StockSymbolinTitle").innerHTML = this.mysinglesymbol.value;
 
 ShowHistoryLoader();
@@ -430,7 +428,7 @@ ShowHistoryLoader();
 
 //Build Table JSON Data
 
-  obj2 = { "table":history_table, "limit":20 };
+  obj2 = { "table":donorstable, "limit":20 };
   dbParam2 = JSON.stringify(obj2);
   xmlhttp2 = new XMLHttpRequest();
   xmlhttp2.onreadystatechange = function() {
@@ -523,7 +521,7 @@ jQuery(document).ready(function() {
   xmlhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xmlhttp2.send("y=" + dbParam2);
   
-}
+
 </script>
 </div>
 </div>
