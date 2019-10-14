@@ -1,42 +1,435 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/w3.css">
+<link rel="icon" type="image/png" href="KWOTfavicon.png">
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+/* Table styles */
+table th {background-color:#81B6FE; color:#FFFFFF;}
+table {border-collapse: collapse;}
+table, th, td {
+    border: 1px solid black;
+	font-size: 1em;
+	padding: 0.5em;
+}
+
+/* Layout (column) styles */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+	padding:15px;
+}
+
+.right {
+
+}
+
+/* Form styles */
+input[type=text] {
+    border: 2px solid #81B6FE;
+    border-radius: 4px;
+	padding:14px 20px;
+	font-size:18px;
+	font-weight:bold;
+}
+
+input[type=button] {
+    background-color:#81B6FE;
+    border-radius: 4px;
+	padding:14px 20px;
+	font-size:18px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+
+input[type=date] {
+    border: 2px solid #81B6FE;
+    border-radius: 4px;
+	padding:14px 20px;
+	font-size:18px;
+	font-weight:bold;
+}
+
+.ExcelButton input[type=button]  {
+    background-color:#37bc76;
+    border-radius: 4px;
+	padding:14px 20px;
+	font-size:18px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 500px;
+    background-color: #00aadd;
+    color: #fff;
+    text-align: left;
+    padding: 10px 10px;
+    border-radius: 6px;
+	border: 1px solid #FFFFFF;
+	top: -5px;
+    left: 105%;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* SELECT element styles START */
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+.select-selected {
+  background-color: DodgerBlue;
+}
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+/* SELECT element styles END */
+
+/* Chart CSS Start */
+body {
+  font-family: Verdana;
+  font-size: 12px;
+  padding: 10px;
+}
+
+#chartdiv {
+  width: 100%;
+  height: 500px;
+  font-size: 11px;
+}
+
+#data,
+#data th,
+#data td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#data th {
+  font-weight: bold;
+  background-color: #eee;
+}
+
+/* Chart CSS End */
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.accordion:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+.accordion .active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+/* Loader Animation - Start */
+/* Center the loader */
+  
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  margin: -75px 0 0 -75px;
+  width: 325px;
+  text-align: center;
+  }
+
+#loader > div {
+  width: 75px;
+  height: 75px;
+  background-color: #0D8ECF;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+#loader .bounce1 {
+	background-color: #FCD202;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+#loader .bounce2 {
+   background-color: #B0DE09;
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+  
+  /* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#realtimedata {
+  display: none;
+}
+
+#quotehistory {
+  display: none;
+}
+
+</style>
+
+<script>
+function openTab(evt, tabName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+
 </head>
 <body>
+<div class="tab" style="padding-left:15px; background-color:purple;">
+<h1 style="color:#FFFFFF;">The <b>DONORS</b> Project | <span style="font-size:0.7em">A Omer Toledano Production</span></h1>
+</div>
+
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'DonrData')" id="defaultOpen">Donors Data</button>
+</div>
+
+<div id="DonorData" class="tabcontent">
+<h2>Donor Data</h2>
+
+<input id="GetInformationButton" type="button" class="w3-button w3-blue" value="Get Information" onclick="get_donors(this.value)">
+
 <script>
-$(document).ready(function() {
-    $('#example').DataTable( {
-        "ajax": 'https://www.blessingbethlehem.com/give-api/v1/donors/?key=07c1be6c3a4641631a1f917c1d807383&token=4f1832766828589c71a89a40ac2b5158'
-    } );
-} );
+function get_donors(donortable) {
+
+ShowRealTimeLoader();
+
+  var obj, dbParam, xmlhttp, myObj, x, txt = "";
+  
+  obj = { "table":donorstable, "limit":20 };
+  dbParam = JSON.stringify(obj);
+  xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      myObj = JSON.parse(this.responseText);
+	  
+	  // Create accordion
+	  for (x in myObj) {
+	  txt += "<button class='accordion'><b>Donor ID: </b>"+ myObj[x].info.donor_id +" <b>First Name: </b>" + myObj[x].info.first_name + " | </b><b>Last Name: </b>" + myObj[x].info.last_name + " <b>Email: </b>" + myObj[x].info.email + "</button>"
+	  txt += "<div class='panel'><div class='row'><div class='column'><p><b>Total Donations: </b>" + myObj[x].stats.total_donations + "<br /><b>Total Donation Sum ($): </b>"+ myObj[x].stats.total_spent + "</p></div></div></div>"
+	  }
+	  
+	  // Create invisible table (opacity 0)
+      //txt += "<table id='realtimetable' style='opacity: 0;'>"
+	 // txt += "<tr><th>assetType</th><th>symbol</th><th>description </th><th>bidPrice</th><th>bidSize</th><th>bidId</th><th>askPrice</th><th>askSize</th><th>askId</th><th>lastPrice</th><th>lastSize</th><th>lastId</th><th>openPrice</th><th>highPrice</th><th>lowPrice</th><th>bidTick</th><th>closePrice</th><th>netChange</th><th>totalVolume</th><th>quoteTimeInLong</th><th>tradeTimeInLong</th><th>mark</th><th>exchangeName</th><th>marginable</th><th>shortable</th><th>volatility</th><th>digits</th><th>nAV</th><th>peRatio</th><th>divAmount</th><th>divYield</th><th>divDate</th><th>securityStatus</th><th>regularMarketLastPrice</th><th>regularMarketLastSize</th><th>regularMarketNetChange</th><th>regularMarketTradeTimeInLong</th><th>delayed</th></tr>"
+     // for (x in myObj) {
+     //   txt += "<tr><td>" + myObj[x].assetType + "</td><td>" + myObj[x].symbol + "</td><td>" + myObj[x].description + "</td><td>" + myObj[x].bidPrice + "</td><td>" + myObj[x].bidSize + "</td><td>" + myObj[x].bidId + "</td><td>" + myObj[x].askPrice + "</td><td>" + myObj[x].askSize + "</td><td>" + myObj[x].askId + "</td><td>" + myObj[x].lastPrice + "</td><td>" + myObj[x].lastSize + "</td><td>" + myObj[x].lastId + "</td><td>" + myObj[x].openPrice + "</td><td>" + myObj[x].highPrice + "</td><td>" + myObj[x].lowPrice + "</td><td>" + myObj[x].bidTick + "</td><td>" + myObj[x].closePrice + "</td><td>" + myObj[x].netChange + "</td><td>" + myObj[x].totalVolume + "</td><td>" + myObj[x].quoteTimeInLong + "</td><td>" + myObj[x].tradeTimeInLong + "</td><td>" + myObj[x].mark + "</td><td>" + myObj[x].exchangeName + "</td><td>" + myObj[x].marginable + "</td><td>" + myObj[x].shortable + "</td><td>" + myObj[x].volatility + "</td><td>" + myObj[x].digits + "</td><td>" + myObj[x].nAV + "</td><td>" + myObj[x].peRatio + "</td><td>" + myObj[x].divAmount + "</td><td>" + myObj[x].divYield + "</td><td>" + myObj[x].divDate + "</td><td>" + myObj[x].securityStatus + "</td><td>" + myObj[x].regularMarketLastPrice + "</td><td>" + myObj[x].regularMarketLastSize + "</td><td>" + myObj[x].regularMarketNetChange + "</td><td>" + myObj[x].regularMarketTradeTimeInLong + "</td><td>" + myObj[x].delayed + "</td></tr>";
+     // }
+     // txt += "</table>"        
+     // document.getElementById("realtimedata").innerHTML = txt;
+	  
+	  //Accordion JS
+	  var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+	  //Accordion JS End
+    }
+  };
+  xmlhttp.open("GET", "https://www.blessingbethlehem.com/give-api/v1/donors/?key=07c1be6c3a4641631a1f917c1d807383&token=4f1832766828589c71a89a40ac2b5158", true);
+  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xmlhttp.send("x=" + dbParam);
+}
 </script>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+</div>
 
-
-<table id="example" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th>donor_id</th>
-                <th>First Name</th>
-                <th>Office</th>
-                <th>Extn.</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th>donor_id</th>
-                <th>First Name</th>
-                <th>Office</th>
-                <th>Extn.</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
-        </tfoot>
-    </table>
-	
 </body>
 </html>
