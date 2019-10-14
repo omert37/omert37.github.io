@@ -376,6 +376,7 @@ function openTab(evt, tabName) {
 <h2>Donor Data</h2>
 
 <input id="GetInformationButton" type="button" class="w3-button w3-blue" value="Get Information" onclick="get_donors(this.value)">
+<p id="realtimedonordata" style="display:none;" class="animate-bottom"></p>
 
 <script>
 function get_donors(donortable) {
@@ -404,7 +405,7 @@ ShowRealTimeLoader();
      //   txt += "<tr><td>" + myObj[x].assetType + "</td><td>" + myObj[x].symbol + "</td><td>" + myObj[x].description + "</td><td>" + myObj[x].bidPrice + "</td><td>" + myObj[x].bidSize + "</td><td>" + myObj[x].bidId + "</td><td>" + myObj[x].askPrice + "</td><td>" + myObj[x].askSize + "</td><td>" + myObj[x].askId + "</td><td>" + myObj[x].lastPrice + "</td><td>" + myObj[x].lastSize + "</td><td>" + myObj[x].lastId + "</td><td>" + myObj[x].openPrice + "</td><td>" + myObj[x].highPrice + "</td><td>" + myObj[x].lowPrice + "</td><td>" + myObj[x].bidTick + "</td><td>" + myObj[x].closePrice + "</td><td>" + myObj[x].netChange + "</td><td>" + myObj[x].totalVolume + "</td><td>" + myObj[x].quoteTimeInLong + "</td><td>" + myObj[x].tradeTimeInLong + "</td><td>" + myObj[x].mark + "</td><td>" + myObj[x].exchangeName + "</td><td>" + myObj[x].marginable + "</td><td>" + myObj[x].shortable + "</td><td>" + myObj[x].volatility + "</td><td>" + myObj[x].digits + "</td><td>" + myObj[x].nAV + "</td><td>" + myObj[x].peRatio + "</td><td>" + myObj[x].divAmount + "</td><td>" + myObj[x].divYield + "</td><td>" + myObj[x].divDate + "</td><td>" + myObj[x].securityStatus + "</td><td>" + myObj[x].regularMarketLastPrice + "</td><td>" + myObj[x].regularMarketLastSize + "</td><td>" + myObj[x].regularMarketNetChange + "</td><td>" + myObj[x].regularMarketTradeTimeInLong + "</td><td>" + myObj[x].delayed + "</td></tr>";
      // }
      // txt += "</table>"        
-     // document.getElementById("realtimedata").innerHTML = txt;
+     document.getElementById("realtimedonordata").innerHTML = txt;
 	  
 	  //Accordion JS
 	  var acc = document.getElementsByClassName("accordion");
