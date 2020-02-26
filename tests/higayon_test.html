@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script> <!-- jQuery source -->
+    </head>
+    <body>
+       
+        <script>
+		//Get FILE start
+		function httpGet(theUrl,callback)
+   {
+       var xmlHttp = new XMLHttpRequest();
+       xmlHttp.open( "GET", theUrl, true ); // false for synchronous request
+       xmlHttp.send( null );
+       xmlHttp.onreadystatechange = function() {
+          callback(xmlHttp.responseText);
+       };
+    }
+  var controlAddIn;
+  httpGet("http://www.higayon.co.il/tash/sechel1605.html",function(content){
+     controlAddIn = document.getElementById('controlAddIn').src =content;
+  });
+  //GET FILE end
+  
+        $(function(){
+            $("td").click(function(event){
+                if($(this).children("input").length > 0)
+                    return false;
+                var tdObj = $(this);
+                var preText = tdObj.html();
+                var inputObj = $("<input type='text' />");
+                tdObj.html("");
+                inputObj.width(tdObj.width())
+                    .height(tdObj.height())
+                    .css({border:"0px",fontSize:"17px"})
+                    .val(preText)
+                    .appendTo(tdObj)
+                    .trigger("focus")
+                    .trigger("select");
+                inputObj.keyup(function(event){
+                    if(13 == event.which) { // press ENTER-key
+                        var text = $(this).val();
+                        tdObj.html(text);
+                    }
+                    else if(27 == event.which) {  // press ESC-key
+                        tdObj.html(preText);
+                    }
+                  });
+                inputObj.click(function(){
+                    return false;
+                });
+            });
+        });
+        </script>
+    </body>
+</html>
