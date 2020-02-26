@@ -3,23 +3,8 @@
         <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script> <!-- jQuery source -->
     </head>
     <body>
-       <div id="controlAddIn"></div>
+       <iframe id="myIframe" src="http://www.higayon.co.il/tash/sechel1605.html" ></iframe>
         <script>
-		//Get FILE start
-		function httpGet(theUrl,callback)
-   {
-       var xmlHttp = new XMLHttpRequest();
-       xmlHttp.open( "GET", theUrl, true ); // false for synchronous request
-       xmlHttp.send( null );
-       xmlHttp.onreadystatechange = function() {
-          callback(xmlHttp.responseText);
-       };
-    }
-  var controlAddIn;
-  httpGet("http://www.higayon.co.il/tash/sechel1605.html",function(content){
-     controlAddIn = document.getElementById('controlAddIn').src =content;
-  });
-  //GET FILE end
   
         $(function(){
             $("td").click(function(event){
