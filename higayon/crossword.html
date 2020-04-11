@@ -7,6 +7,20 @@
 
 </style>
 <script>
+function save() {
+  var htmlContent = ["http://www.higayon.co.il/tash/sechel1611.html"];
+  var bl = new Blob(htmlContent, {type: "text/html"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(bl);
+  a.download = "higayon.html";
+  a.hidden = true;
+  document.body.appendChild(a);
+  a.innerHTML = "something random - nobody will see this, it doesn't matter what you put here";
+  a.click();
+}
+
+save();
+
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
   /* Loop through a collection of all HTML elements: */
@@ -38,7 +52,7 @@ function includeHTML() {
 <body>
 <h1>היגיון לאבא</h1>
 <input id="HigayonURL" type="text" width="%100">
-<div w3-include-html="index.html"></div>
+<div w3-include-html="higayon.html"></div>
 
 <script>
 includeHTML();
