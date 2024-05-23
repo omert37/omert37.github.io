@@ -322,7 +322,7 @@ function redrawCanvas(canvasElem, graphics, nodes, edges) {
       dx /= mag;  // Make (dx, dy) a unit vector, pointing from B to A
       dy /= mag;
       var opacity = Math.min(Math.min(nodeA.opacity, nodeB.opacity), edge.opacity);
-      graphics.strokeStyle = "rgba(220,220,220," + opacity.toFixed(3) + ")";
+      graphics.strokeStyle = "rgba(109, 106, 145," + opacity.toFixed(3) + ")";
       graphics.beginPath();
       // Shorten the edge so that it only touches the circumference of each circle
       graphics.moveTo((nodeA.posX - dx * nodeA.radius) * size, (nodeA.posY - dy * nodeA.radius) * size);
