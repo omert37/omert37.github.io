@@ -6,10 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Omer Toledano • Online Professional</title>
-
- 
+<style>
+.profil-img {
+  position: relative;
+  width: 50%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translateY(calc(-50% - 3px)) translateX(calc(-50% - 3px));
+  border: 3px solid #fff;
+  overflow: hidden;
+}
+.profil-img > img {
+  display: block;
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%) translateX(-50%);
+}
+</style>
+ </head>
   <body>
-<canvas id="canvas"  width="1000" height="320" style="display:block; width: 100%;padding: 0px; margin-top:-15px;margin-bottom:15px;"></canvas>
+<canvas id="canvas"  width="1000" height="320" style="display:block; width: 100%;padding: 0px; margin-top:-15px;margin-bottom:15px;">
+<div class="profil-img">
+    <img src="assets/img/about/Omer_Toledano_646x646.jpg" alt="">
+  </div>
+
+</canvas>
 
 <form action="#" method="get" style="
  ">
