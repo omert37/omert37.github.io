@@ -9,7 +9,7 @@
 
  
   <body>
-<canvas id="canvas"  width="1000" height="520" style="display:block; width: 100%;padding: 0px; margin-top:-15px;margin-bottom:15px;"></canvas>
+<canvas id="canvas"  width="1000" height="320" style="display:block; width: 100%;padding: 0px; margin-top:-15px;margin-bottom:15px;"></canvas>
 
 <form action="#" method="get" style="
  ">
@@ -304,7 +304,7 @@ function redrawCanvas(canvasElem, graphics, nodes, edges) {
   graphics.clearRect(0, 0, width, height);
   // Draw every node
   nodes.forEach(function(node) {
-    graphics.fillStyle = "rgba(220,220,220," + node.opacity.toFixed(3) + ")";
+    graphics.fillStyle = "rgba(109, 106, 145," + node.opacity.toFixed(3) + ")";
     graphics.beginPath();
     graphics.arc(node.posX * size, node.posY * size, node.radius * size, 0, Math.PI * 2);
     graphics.fill();
